@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Coats</title>
+<link th:href="@{/css/bootstrap.min.css}"	href="../../css/bootstrap.min.css" rel="stylesheet"/>
+<link th:href="@{/css/animate.min.css}" href="../../css/animate.min.css"	rel="stylesheet"/>
+<link th:href="@{/css/bootstrap-dropdownhover.min.css}"	href="../../css/bootstrap-dropdownhover.min.css" rel="stylesheet"/>
+<link th:href="@{/css/custom2.css}" href="../../css/custom2.css"	rel="stylesheet"/>
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<div class="row">
+				<img src="images/coatsplc_logo.svg" alt="Coats logo" height="50"
+					width="50" class="coats-logo"/>
+				<h1 class="coats">
+					<a href="">Coats eComm</a>
+				</h1>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="">Coats Colour Express</a></li>
+					<li><a href="">Opti Express</a></li>
+					<li class="dropdown">
+						<button class="btn btn-default dropdown-toggle" type="button"
+							id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="true">
+							Tom Jones <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<li><a href="#">Account</a></li>
+							<li><a href="#">Orders</a></li>
+							<li><a href="#">Drafts</a></li>
+							<li><a href="#">Logout</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 nav-menu">
+				<ul class="nav navbar-nav top-nav">
+					<li><a href="">Home</a></li>
+
+					<li th:each="menuItem : ${menuList}" class="dropdown">
+					<a href="${menuItem.link}" class="dropdown-toggle dropdownhover-bottom"
+						data-toggle="dropdown" data-hover="dropdown" th:text="${menuItem.name}">  
+						<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li th:each="menuSubItem : ${menuItem.subMenus}">
+								<a href="${menuSubItem.link}" th:text="${menuSubItem.name}"></a>
+							</li>							
+						</ul>
+					</li>		
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div>
+		<h3>Order #: <span th:text="${order.number}"></span></h3>
+		<h3>Order Status: <span th:text="${order.status}"></span> </h3>
+		<h3>Order Items:</h3> 
+	</div>
+	<div>
+		<table border="1" style="width:80%">
+			<tr>
+				<td width="20%">Item #</td>
+				<td width="20%">Price</td>
+				<td width="40%">Description</td>
+			</tr>
+			<tr th:each="item : ${order.items}">
+				<td th:text="${item.itemNumber}"></td>
+				<td th:text="${item.price}"></td>
+				<td th:text="${item.discription}"></td>
+			</tr>
+		</table>
+	</div>	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="../../js/bootstrap.min.js"></script>
+	<script src="../../js/bootstrap-dropdownhover.min.js"></script>
+</body>
+</html>
